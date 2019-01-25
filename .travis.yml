@@ -1,0 +1,23 @@
+sudo: required
+services:
+ - docker
+
+before_install:
+ - docker build -t joerajeev/docker-multi-container-demo-client-test -f ./client/Dockerfile.dev ./client
+
+script:
+ - docker run joerajeev/docker-multi-container-demo-client-test npm test -- --coverage
+
+after_success:
+ - docker build -t joerajeev/docker-multi-container-demo-client ./client
+ - docker build -t joerajeev/docker-multi-container-demo-nginx ./nginx
+ - docker build -t joerajeev/docker-multi-container-demo-server ./server
+ - docker build -t joerajeev/docker-multi-container-demo-worker ./worker
+ # Log into docker CLI
+ - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin 
+ #Push the images to docker hub
+ - docker push joerajeev/docker-multi-container-demo-client
+ - docker push joerajeev/docker-multi-container-demo-nginx
+ - docker push joerajeev/docker-multi-container-demo-server
+ - docker push joerajeev/docker-multi-container-demo-worker
+
