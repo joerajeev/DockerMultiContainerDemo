@@ -1,6 +1,6 @@
 {
  "AWSEBDockerrunVersion": 2,
- "containerDefinitions": [
+  "containerDefinitions": [
    {
     "name": "client",
     "image": "joerajeev/docker-multi-container-demo-client",
