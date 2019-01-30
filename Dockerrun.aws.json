@@ -23,7 +23,7 @@
     "memory": 128
    },
    {
-    "name": "nginx",
+    "name": "joerajeev/nginx",
     "image": "joerajeev/docker-multi-container-demo-nginx",
     "essential": true,
     "portMappings": [
