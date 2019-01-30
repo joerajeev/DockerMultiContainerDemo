@@ -1,0 +1,36 @@
+{
+ "AWSEBGDockerrunVersion": 2,
+ "containerDefinitions": [
+   {
+    "name": "client",
+    "image": "joerajeev/docker-multi-container-demo-client",
+    "hostname": "client",
+    "essential": false
+   },
+   {
+    "name": "server",
+    "image": "joerajeev/docker-multi-container-demo-server",
+    "hostname": "api",
+    "essential": false
+   },
+   {
+    "name": "worker",
+    "image": "joerajeev/docker-multi-container-demo-worker",
+    "hostname": "worker",
+    "essential": false
+   },
+   {
+    "name": "nginx",
+    "image": "joerajeev/docker-multi-container-demo-nginx",
+    "essential": true,
+    "portMappings": [
+      {
+       "hostPort": 80,
+       "containerPort": 80
+      }
+    ],
+    "links": ["client", "server"] 
+   }
+ ]
+}
+
