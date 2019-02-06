@@ -20,3 +20,11 @@ Any changes pushed to the application gets picked up by travis CI, which (as def
 Elastic beanstalk then (as defined in the Dockerrun.aws.json file) pulls the images from docker hub and runs them.
 As we expect the postgres and redis containers to persist outside the lifecycle of EB, we create them with RDS and Elasicache and configure EB to point to them.
 
+The server expects a set of environment variables setup to be able to connect to redis and postgres:
+- REDIS_HOST
+- REDIS_PORT
+- PGUSER
+- PGHOST
+- PGDATABASE
+- PGPASSWORD
+- PGPORT
